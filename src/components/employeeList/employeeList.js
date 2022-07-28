@@ -3,8 +3,9 @@ import EmployeesListItem from '../employeesListItem/employeesListItem';
 
 const EmployeesList = ({data}) => {
     const elements = data.map(item => {
+      const {id, ...itemProps} = item;
       return (
-          <EmployeesListItem key={item.id} name={item.name} salary={item.salary} increase={item.increase} />
+          <EmployeesListItem key={id} {...itemProps} />
       )
     });
 
