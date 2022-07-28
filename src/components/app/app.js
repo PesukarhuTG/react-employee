@@ -15,7 +15,8 @@ class App extends Component {
         {id: 1, name: 'John C.', salary: 800, increase: false, like: true},
         {id: 2, name: 'Alex M.', salary: 3000, increase: false, like: false},
         {id: 3, name: 'Carol V.', salary: 5100, increase: true, like: false},
-      ]
+      ],
+      term: '',
     }
   }
 
@@ -79,21 +80,36 @@ class App extends Component {
     }))
   }
 
+  searchEmp = (items, term) => {
+    if (term.length === 0) return items; //если строка поиска пуста, возвращаем весь массив
+    return items.filter(item => {
+      return item.name.indexOf(term) > -1; //если кусочек строки term найден в name
+    })
+
+  }
+
+  onUpdateSearch = (term) => {
+    this.setState({term});
+  }
+
   render() {
+    const { data, term } = this.state;
     const employees = this.state.data.length; //общее кол-во сотрудников
     const increased = this.state.data.filter(item => item.increase).length;//ск на премию
+
+    const visibleData = this.searchEmp(data, term); //отфильтрованный массив
 
     return (
       <div className="app">
         <AppInfo employees={employees} increased={increased}/>
   
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
   
         <EmployeesList 
-            data = {this.state.data}
+            data = {visibleData}
             onDelete = {this.deleteItem}
             onToggleIncrease={this.onToggleIncrease}
             onToggleLike={this.onToggleLike} />
