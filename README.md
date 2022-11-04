@@ -1,4 +1,4 @@
-## [Deploy link](https://pesukarhutg.github.io/react-first/)
+## [Deploy link](https://pesukarhutg.github.io/react-employee/)
 
 ![pr-employee](https://user-images.githubusercontent.com/39487464/181598598-cdf5b4fd-35b2-48d1-9344-49565689aacd.JPG)
 
